@@ -1,0 +1,34 @@
+@startuml
+class Libro{
+- nomelibro : String
+- numeropagine : int
+- prezzo : int
++ toString() : String
+
+}
+class Utente{
+- nome : String
+- prestiti : prestito []
++ EffettuaPrestito(Libro : Libro) : void
++ Effettuarestituzioe(Prestito : prestito) : void
+}
+class biblioteca {
+- libro : Libro []
+- utenti : Utente []
+}
+class prestito{
+-data : String
+- durata : int
+- Libro : Libro
++ annullaPrestito() : void
+
+}
+
+
+biblioteca "1" <-- "*" Utente
+biblioteca "1" <-- "*" Libro
+Utente "1" <- " *" prestito
+prestito "1" <- "1" Libro
+
+
+@enduml
