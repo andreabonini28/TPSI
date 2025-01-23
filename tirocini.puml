@@ -1,0 +1,41 @@
+@startuml
+:Azienda : as azienda
+:Responsabiletirocini : as responsabile
+: Stundente : as studente
+(Produrre offerte tirocini) as produrreoff
+usecase  apprerifiuto as "approvare o rifiutare
+--
+se offerta rifiutata
+"
+usecase  apprerisi as "approvare o rifiutare
+--
+se offerta accettata
+"
+(rendi visibile offerta) as visualizza
+(notifica azienda) as notifica
+(visualizzazione offerte) as visualizzazione
+(accordi con azienda) as accordo
+(assegnare stundente) as assegnastudenti
+usecase approvazionecoppie as "
+approvare o rifiutare accoppiamenti
+--
+se accompiamento accettato
+"
+(stampare accordo) as stampare
+accordo ..> visualizzazione :<<extends>>
+apprerifiuto --> notifica : <<extends>>
+assegnastudenti ..> accordo : <<include>>
+approvazionecoppie ..> assegnastudenti : <<include>>
+stampare ..> approvazionecoppie : <<extends>>
+produrreoff <-- azienda
+apprerisi <--responsabile
+apprerifiuto <-- responsabile
+apprerifiuto <-- responsabile
+visualizzazione <-- studente
+accordo <-- studente
+assegnastudenti <-- azienda
+approvazionecoppie <-- responsabile
+stampare <-- responsabile
+stampare <-- azienda
+stampare <-- studente
+@enduml
